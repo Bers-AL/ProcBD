@@ -1,0 +1,58 @@
+-------------------------------------------------------------------------------
+Test set: com.example.storedproc.unit.ReactiveRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 1.291 s <<< FAILURE! -- in com.example.storedproc.unit.ReactiveRepositoryTest
+com.example.storedproc.unit.ReactiveRepositoryTest.shouldHandleComplexQuery -- Time elapsed: 1.213 s <<< ERROR!
+com.example.storedproc.exceptions.ConfigurationException: Ошибка конфигурации: Repository type mismatch: repository is non-reactive but adapter is reactive
+	at com.example.storedproc.core.StoredProcedureInvocationHandler.invoke(StoredProcedureInvocationHandler.java:43)
+	at com.example.storedproc.unit.$Proxy95.findByAgeGreaterThanAndStatusInOrderByNameDesc(Unknown Source)
+	at com.example.storedproc.unit.ReactiveRepositoryTest.shouldHandleComplexQuery(ReactiveRepositoryTest.java:126)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ReactiveRepositoryTest.shouldHandleGroupByQuery -- Time elapsed: 0.006 s <<< ERROR!
+com.example.storedproc.exceptions.ConfigurationException: Ошибка конфигурации: Repository type mismatch: repository is non-reactive but adapter is reactive
+	at com.example.storedproc.core.StoredProcedureInvocationHandler.invoke(StoredProcedureInvocationHandler.java:43)
+	at com.example.storedproc.unit.$Proxy95.findDistinctByAgeInAndStatusNotNullGroupByStatus(Unknown Source)
+	at com.example.storedproc.unit.ReactiveRepositoryTest.shouldHandleGroupByQuery(ReactiveRepositoryTest.java:148)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ReactiveRepositoryTest.shouldHandleVoidReturn -- Time elapsed: 0.042 s <<< ERROR!
+com.example.storedproc.exceptions.ConfigurationException: Ошибка конфигурации: Repository type mismatch: repository is non-reactive but adapter is reactive
+	at com.example.storedproc.core.StoredProcedureInvocationHandler.invoke(StoredProcedureInvocationHandler.java:43)
+	at com.example.storedproc.unit.$Proxy95.deleteById(Unknown Source)
+	at com.example.storedproc.unit.ReactiveRepositoryTest.shouldHandleVoidReturn(ReactiveRepositoryTest.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ReactiveRepositoryTest.shouldHandleCountQuery -- Time elapsed: 0.007 s <<< ERROR!
+com.example.storedproc.exceptions.ConfigurationException: Ошибка конфигурации: Repository type mismatch: repository is non-reactive but adapter is reactive
+	at com.example.storedproc.core.StoredProcedureInvocationHandler.invoke(StoredProcedureInvocationHandler.java:43)
+	at com.example.storedproc.unit.$Proxy95.countByAgeGreaterThan(Unknown Source)
+	at com.example.storedproc.unit.ReactiveRepositoryTest.shouldHandleCountQuery(ReactiveRepositoryTest.java:161)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ReactiveRepositoryTest.shouldReturnMonoUser -- Time elapsed: 0.007 s <<< ERROR!
+com.example.storedproc.exceptions.ConfigurationException: Ошибка конфигурации: Repository type mismatch: repository is non-reactive but adapter is reactive
+	at com.example.storedproc.core.StoredProcedureInvocationHandler.invoke(StoredProcedureInvocationHandler.java:43)
+	at com.example.storedproc.unit.$Proxy95.findById(Unknown Source)
+	at com.example.storedproc.unit.ReactiveRepositoryTest.shouldReturnMonoUser(ReactiveRepositoryTest.java:74)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ReactiveRepositoryTest.shouldReturnFluxOfUsers -- Time elapsed: 0.006 s <<< ERROR!
+com.example.storedproc.exceptions.ConfigurationException: Ошибка конфигурации: Repository type mismatch: repository is non-reactive but adapter is reactive
+	at com.example.storedproc.core.StoredProcedureInvocationHandler.invoke(StoredProcedureInvocationHandler.java:43)
+	at com.example.storedproc.unit.$Proxy95.findByAge(Unknown Source)
+	at com.example.storedproc.unit.ReactiveRepositoryTest.shouldReturnFluxOfUsers(ReactiveRepositoryTest.java:91)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+

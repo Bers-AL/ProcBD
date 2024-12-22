@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: com.example.storedproc.unit.MixedRepositoriesTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.061 s <<< FAILURE! -- in com.example.storedproc.unit.MixedRepositoriesTest
+com.example.storedproc.unit.MixedRepositoriesTest.shouldHandleMixedRepositoryCalls -- Time elapsed: 0.059 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.example.storedproc.core.StoredProcedureMetadata.getReturnTypeInfo()" because "this.metadata" is null
+	at com.example.storedproc.core.PreparedProcedureCall.execute(PreparedProcedureCall.java:26)
+	at com.example.storedproc.core.StoredProcedureInvocationHandler.invoke(StoredProcedureInvocationHandler.java:48)
+	at com.example.storedproc.unit.$Proxy96.findById(Unknown Source)
+	at com.example.storedproc.unit.MixedRepositoriesTest.shouldHandleMixedRepositoryCalls(MixedRepositoriesTest.java:119)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+

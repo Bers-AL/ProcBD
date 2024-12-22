@@ -1,0 +1,167 @@
+-------------------------------------------------------------------------------
+Test set: com.example.storedproc.unit.ProcedureSQLGeneratorTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 8, Errors: 1, Skipped: 0, Time elapsed: 0.131 s <<< FAILURE! -- in com.example.storedproc.unit.ProcedureSQLGeneratorTest
+com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateReactiveListProcedure -- Time elapsed: 0.004 s <<< ERROR!
+com.example.storedproc.exceptions.ConfigurationException: Ошибка конфигурации: Invalid method prefix: findAllByAge. Supported prefixes: countBy, bulkDelete, findBy, deleteBy, existsBy, save, search, insert, update, bulkInsert, bulkUpdate, findDistinct
+	at com.example.storedproc.core.ProcedureValidationUtils.validateMethodName(ProcedureValidationUtils.java:42)
+	at com.example.storedproc.core.ProcedureValidationUtils.validateMethod(ProcedureValidationUtils.java:32)
+	at com.example.storedproc.core.ProcedureSQLGenerator.generateProcedureSQL(ProcedureSQLGenerator.java:46)
+	at com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateReactiveListProcedure(ProcedureSQLGeneratorTest.java:158)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateCountProcedure -- Time elapsed: 0.097 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 
+  "CREATE OR REPLACE PROCEDURE countByStatus (IN $1 VARCHAR) LANGUAGE plpgsql AS $$ BEGIN SELECT COUNT(*) FROM users WHERE status = $1; END; $$"
+ but was: 
+  "-- Generated procedure for method: countByStatus
+  -- Parameters: [java.lang.String status]
+  CREATE OR REPLACE FUNCTION users_countbystatus_73cc7ce3(status VARCHAR) RETURNS TABLE (id BIGINT, name VARCHAR, age INTEGER, status VARCHAR) AS $$
+  BEGIN
+      RETURN QUERY
+      SELECT COUNT(*) FROM users t WHERE status = $1;
+  END$$ LANGUAGE plpgsql;"
+	at com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateCountProcedure(ProcedureSQLGeneratorTest.java:90)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateSelectProcedure -- Time elapsed: 0.004 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 
+  "CREATE OR REPLACE PROCEDURE findById (IN $1 BIGINT) LANGUAGE plpgsql AS $$ BEGIN SELECT * FROM users WHERE id = $1; END; $$"
+ but was: 
+  "-- Generated procedure for method: findById
+  -- Parameters: [java.lang.Long id]
+  CREATE OR REPLACE FUNCTION users_findbyid_850ce43a(id BIGINT) RETURNS TABLE (id BIGINT, name VARCHAR, age INTEGER, status VARCHAR) AS $$
+  BEGIN
+      RETURN QUERY
+      SELECT * FROM users t WHERE id = $1;
+  END$$ LANGUAGE plpgsql;"
+	at com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateSelectProcedure(ProcedureSQLGeneratorTest.java:48)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateReactiveSelectProcedure -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 
+  "CREATE OR REPLACE PROCEDURE findByIdReactive (IN $1 BIGINT) LANGUAGE plpgsql AS $$ BEGIN SELECT * FROM users WHERE id = $1; END; $$"
+ but was: 
+  "-- Generated procedure for method: findByIdReactive
+  -- Parameters: [java.lang.Long id]
+  CREATE OR REPLACE FUNCTION users_findbyidreactive_850ce43a(id BIGINT) RETURNS TABLE (id BIGINT, name VARCHAR, age INTEGER, status VARCHAR) AS $$
+  BEGIN
+      RETURN QUERY
+      SELECT * FROM users t WHERE id_reactive = $1;
+  END$$ LANGUAGE plpgsql;"
+	at com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateReactiveSelectProcedure(ProcedureSQLGeneratorTest.java:146)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateSelectWithOrderBy -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 
+  "CREATE OR REPLACE PROCEDURE findByAgeOrderByNameDesc (IN $1 INTEGER) LANGUAGE plpgsql AS $$ BEGIN SELECT * FROM users WHERE age = $1 ORDER BY name DESC; END; $$"
+ but was: 
+  "-- Generated procedure for method: findByAgeOrderByNameDesc
+  -- Parameters: [java.lang.Integer age]
+  CREATE OR REPLACE FUNCTION users_findbyageorderbynamedesc_02db1e78(age INTEGER) RETURNS TABLE (id BIGINT, name VARCHAR, age INTEGER, status VARCHAR) AS $$
+  BEGIN
+      RETURN QUERY
+      SELECT * FROM users t WHERE age = $1 OR der = $2 ORDER BY t.name DESC;
+  END$$ LANGUAGE plpgsql;"
+	at com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateSelectWithOrderBy(ProcedureSQLGeneratorTest.java:76)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateSelectWithMultipleConditions -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 
+  "CREATE OR REPLACE PROCEDURE findByNameAndAge (IN $1 VARCHAR, IN $2 INTEGER) LANGUAGE plpgsql AS $$ BEGIN SELECT * FROM users WHERE name = $1 AND age = $2; END; $$"
+ but was: 
+  "-- Generated procedure for method: findByNameAndAge
+  -- Parameters: [java.lang.String name, java.lang.Integer age]
+  CREATE OR REPLACE FUNCTION users_findbynameandage_798eb023(name VARCHAR, age INTEGER) RETURNS TABLE (id BIGINT, name VARCHAR, age INTEGER, status VARCHAR) AS $$
+  BEGIN
+      RETURN QUERY
+      SELECT * FROM users t WHERE name = $1 AND age = $2;
+  END$$ LANGUAGE plpgsql;"
+	at com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateSelectWithMultipleConditions(ProcedureSQLGeneratorTest.java:62)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateDeleteProcedure -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 
+  "CREATE OR REPLACE PROCEDURE deleteById (IN $1 BIGINT) LANGUAGE plpgsql AS $$ BEGIN DELETE FROM users WHERE id = $1; END; $$"
+ but was: 
+  "-- Generated procedure for method: deleteById
+  -- Parameters: [java.lang.Long id]
+  CREATE OR REPLACE FUNCTION users_deletebyid_850ce43a(id BIGINT) RETURNS TABLE (affected_rows integer) AS $$
+  BEGIN
+      RETURN QUERY
+      WITH inserted AS (
+          DELETE FROM users WHERE id = $1        RETURNING 1
+      )
+      SELECT count(*)::integer as affected_rows FROM inserted;
+  END$$ LANGUAGE plpgsql;"
+	at com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateDeleteProcedure(ProcedureSQLGeneratorTest.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateUpdateProcedure -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 
+  "CREATE OR REPLACE PROCEDURE updateNameById (IN $1 VARCHAR, IN $2 BIGINT) LANGUAGE plpgsql AS $$ BEGIN UPDATE users SET name = $1 WHERE id = $2; END; $$"
+ but was: 
+  "-- Generated procedure for method: updateNameById
+  -- Parameters: [java.lang.String name, java.lang.Long id]
+  CREATE OR REPLACE FUNCTION users_updatenamebyid_90d2afa5(name VARCHAR, id BIGINT) RETURNS TABLE (affected_rows integer) AS $$
+  BEGIN
+      RETURN QUERY
+      WITH inserted AS (
+          UPDATE users SET name = $1 WHERE id = $1        RETURNING 1
+      )
+      SELECT count(*)::integer as affected_rows FROM inserted;
+  END$$ LANGUAGE plpgsql;"
+	at com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateUpdateProcedure(ProcedureSQLGeneratorTest.java:118)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateInsertProcedure -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 
+  "CREATE OR REPLACE PROCEDURE save (IN $1 users) LANGUAGE plpgsql AS $$ BEGIN INSERT INTO users (name, age, status) VALUES ($1.name, $1.age, $1.status); END; $$"
+ but was: 
+  "-- Generated procedure for method: save
+  -- Parameters: [com.example.storedproc.entities.User user]
+  CREATE OR REPLACE FUNCTION users_save_bcab641c(p_user JSONB) RETURNS TABLE (affected_rows integer) AS $$
+  BEGIN
+      RETURN QUERY
+      WITH inserted AS (
+          INSERT INTO users (name, age, status) VALUES ((p_user->>'name')::varchar, (p_user->>'age')::integer, (p_user->>'status')::varchar)        RETURNING 1
+      )
+      SELECT count(*)::integer as affected_rows FROM inserted;
+  END$$ LANGUAGE plpgsql;"
+	at com.example.storedproc.unit.ProcedureSQLGeneratorTest.shouldGenerateInsertProcedure(ProcedureSQLGeneratorTest.java:132)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
